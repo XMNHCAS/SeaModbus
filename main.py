@@ -11,13 +11,28 @@ def printRes(res):
 
 
 if __name__ == '__main__':
-    res = CheckSum.crc16([0x01, 0x01, 0x00, 0x00, 0x00, 0x0a])
-    printRes(res)
+    print('check sum:')
+    printRes(CheckSum.crc16([0x01, 0x01, 0x00, 0x00, 0x00, 0x0a]))
 
-    res = CheckSum.crc16([0x01, 0x01, 0x02, 0x02, 0x00])
-    printRes(res)
+    print('check sum:')
+    printRes(CheckSum.crc16([0x01, 0x01, 0x02, 0x02, 0x00]))
 
-    res = ReadMessage.GetReadMessage(1, ReadMode.ReadCoils, 0, 10)
-    printRes(res)
+    print('read message:')
+    printRes(ReadMessage.GetReadMessage(1, ReadMode.ReadCoils, 0, 10))
 
-    printRes(WriteMessage.WriteSingleColisMessage(1, 1, True))
+    print('write single coil:')
+    printRes(WriteMessage.WriteSingleCoilMessage(1, 1, True))
+
+    print('write single register:')
+    printRes(WriteMessage.WriteSingleRegisterMessage(1, 0, 300))
+
+    print('write multiple coils')
+    wValue = [False, False, False]
+    for i in range(7):
+        wValue.append(True)
+    # print(WriteMessage.WriteMultipleCoilsMessage(1, 0, wValue))
+    printRes(WriteMessage.WriteMultipleCoilsMessage(1, 0, wValue))
+
+    print('write multiple registers')
+    wValue = [10, 20, 30, 40, 50]
+    printRes(WriteMessage.WriteMultipleRegistersMessage(1, 0, wValue))

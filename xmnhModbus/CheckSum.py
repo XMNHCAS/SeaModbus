@@ -2,8 +2,24 @@ import sys
 
 
 class CheckSum:
+    '''
+    Check sum calculation methods class
 
-    def crc16(data: list):
+    校验码计算方法类
+    '''
+
+    def crc16(data: list) -> list[int]:
+        '''
+        Calculate CRC16 check sum
+
+        计算CRC16校验码
+
+        Args:
+            data (list): Message that needs to calculate the check sum  (需要计算校验码的报文)
+
+        Returns:
+            list[int]: CRC16 check sum
+        '''
         try:
             crc = 0xffff
             for item in data:

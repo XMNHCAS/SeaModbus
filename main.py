@@ -1,6 +1,6 @@
-from CheckSum import CheckSum
-from MessageGeneration import ReadMessageFunction
-from ReadWriteMode import ReadWriteMode
+from xmnhModbus.CheckSum import CheckSum
+from xmnhModbus.MessageGeneration import ReadMessage, WriteMessage
+from xmnhModbus.ReadWriteMode import ReadMode
 
 
 def printRes(res):
@@ -17,5 +17,7 @@ if __name__ == '__main__':
     res = CheckSum.crc16([0x01, 0x01, 0x02, 0x02, 0x00])
     printRes(res)
 
-    res = ReadMessageFunction.GetReadMessage(1, ReadWriteMode.ReadCoils, 0, 10)
+    res = ReadMessage.GetReadMessage(1, ReadMode.ReadCoils, 0, 10)
     printRes(res)
+
+    printRes(WriteMessage.WriteSingleColisMessage(1, 1, True))
